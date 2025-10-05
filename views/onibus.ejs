@@ -1,0 +1,26 @@
+<%- include ('partials/header.ejs') %> 
+<%- include ('partials/navbar.ejs') %>  
+    <h1 style="text-align: center;">Bem-vindo a Página de Ônibus</h1>
+    <hr>
+    <h3 style="text-align: center; color: #a34fb8;">Lista de Ônibus</h3>
+        <table class="table table-bordered table-hover table-striped mx-auto w-75">
+            <thead class="table-danger">
+                <th>Nome</th>
+                <th>Marca</th>
+                <th>Preço</th>
+            </thead>
+            <tbody>
+                <!-- FOREACH -->
+                 <% onibus.forEach(onibus => { %>
+                    <tr>
+                        <td><%= onibus.Nome %></td>
+                        <td><%= onibus.Marca %></td>
+                        <td>R$ <%= onibus.Preco %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+        <br>
+        <a class="btn-voltar" href="/"><ion-icon name="arrow-back-outline"></ion-icon>Voltar</a>
+<%- include ('partials/footer.ejs') %>   

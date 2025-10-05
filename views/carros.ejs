@@ -1,0 +1,28 @@
+<%- include ('partials/header.ejs') %> 
+<%- include ('partials/navbar.ejs') %>  
+    <h1 style="text-align: center;">Bem-vindo a Página de Carros</h1>
+    <hr>
+    <h3 style="text-align: center; color: #a34fb8;">Lista de Carros</h3>
+        <table class="table table-bordered table-hover table-striped mx-auto w-75">
+            <thead class="table-danger">
+                <th>Nome</th>
+                <th>Modelo</th>
+                <th>Marca</th>  
+                <th>Preço</th>
+            </thead>
+            <tbody>
+                <!-- FOREACH -->
+                 <% carros.forEach(carro => { %>
+                    <tr>
+                        <td><%= carro.Nome %></td>
+                        <td><%= carro.Modelo %></td>
+                        <td><%= carro.Marca %></td>
+                        <td>R$ <%= carro.Preco %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+        <br>
+        <a class="btn-voltar" href="/"><ion-icon name="arrow-back-outline"></ion-icon>Voltar</a>
+<%- include ('partials/footer.ejs') %>   
