@@ -1,84 +1,23 @@
 // importando express
 import express from "express"
-import Carros from "../models/Carros.js"
-import { where } from "sequelize";
+
+//criando rota
+// carregando na variavel router o express.Router(),responsável por gerenciar as rotas da aplicação
+// não carrega o express inteiro, só uma parte
 const router = express.Router()
 
-// ROTA DE CARROS
-router.get("/carros", function (req, res) {
-  Carros.findAll().then((carros) => {
-    res.render("carros", {
-      carros: carros,
-    });
-  }).catch((erro) => {
-    console.log(erro);
+// ROTA DE CLIENTES
+router.get("/carros", (req, res) => {
+  const carros = [
+    { Nome: "Jeep Compass", Modelo: "SUV", Marca: "Jeep", Preco: "149.990" },
+    { Nome: "Audi A7", Modelo: "Sedã-coupê", Marca: "Audi", Preco: "450.000" },
+    { Nome: "Civic g10", Modelo: "Sport", Marca: "Honda", Preco: "150.000" },
+    { Nome: "Celta", Modelo: "hatchback", Marca: "Chevrolet", Preco: "15.000" },
+    { Nome: "Corsa", Modelo: "sedan", Marca: "Chevrolet", Preco: "28.000" },
+  ];
+  res.render("carros", {
+    carros: carros,
   });
-});
-
-//ROTA DE CADASTRO DE CARROS
-router.post("/carros/new", (req, res) => {
-  const nome = req.body.nome;
-  const modelo = req.body.modelo;
-  const marca = req.body.marca;
-  const preco = req.body.preco;
-
-  Carros.create({
-    nome: nome,
-    modelo: modelo,
-    marca: marca,
-    preco: preco,
-  }).then(() => {
-    res.redirect("/carros");
-  }).catch((erro) => {
-    console.log(erro);
-  });
-});
-
-//ROTA DE EXCLUSÃO DE CARROS
-router.get("/carros/delete/:id", (req, res) => {
-  const id = req.params.id;
-  Carros.destroy({
-    where: {
-      id: id,
-    },
-  }).then(() => {
-    res.redirect("/carros");
-  }).catch((erro) => {
-    console.log(erro);
-  });
-});
-
-//ROTA DE EDIÇÃO DE CARROS
-router.get("/carros/edit/:id", (req, res) => {
-  const id = req.params.id;
-  Carros.findByPk(id).then(function (carro) {
-    res.render("carrosEdit", {
-      carro: carro,
-    });
-  }).catch((erro) => {
-    console.log(erro);
-  });
-});
-
-//ROTA DE ALTERAÇÃO DE CARROS
-router.post("/carros/update/:id", (req, res) => {
-  const id = req.body.id;
-  const nome = req.body.nome;
-  const modelo = req.body.modelo;
-  const marca = req.body.marca;
-  const preco = req.body.preco;
-  Carros.update({
-    nome: nome,
-    modelo: modelo,
-    marca: marca,
-    preco: preco,    
-  },
-  {where: {id: id} }
-).then(() => {
-  res.redirect("/carros");
-}).catch((erro) => {
-  console.log(erro);
-});
 });
 
 // exportando o objeto router

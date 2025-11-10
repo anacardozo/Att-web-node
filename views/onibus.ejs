@@ -1,71 +1,26 @@
-<%- include ('partials/header.ejs') %>
-    <%- include ('partials/navbar.ejs') %>
-        <h1 style="text-align: center; color: #a34fb8;">Bem-vindo a Página de Ônibus</h1>
-        <hr>
-        <div class="container">
-            <div class="card">
-                <div class="card-header w-100 m-0">
-                    <h2>Cadastrar Ônibus</h1>
-                </div>
-                <div class="card-body w-75">
-                    <form method="POST" action="/onibus/new">
-                        <label>Nome do Ônibus</label>
-                        <input type="text" name="nome" id="nome" placeholder="Insira o nome do onibus"
-                            class="form-control" required>
-
-                        <label>Marca do Ônibus</label>
-                        <input type="text" name="marca" id="marca" placeholder="Insira a marca do ônibus"
-                            class="form-control" required>
-
-                        <label>Preço do Ônibus</label>
-                        <input type="text" name="preco" id="preco" placeholder="Insira o preço do ônibus"
-                            class="form-control" required>
-                        <br>
-                        <button class="btn btn-success">Cadastrar</button>
-                        <button type="reset" class="btn btn-secondary ml-2">Limpar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <h3 style="text-align: center; color: #a34fb8;">Lista de Ônibus</h3>
-        <div class="container mb-5">
-        <div class="card">
-            <div class="card-header w-100 m-0">
-                <h2>Ônibus</h1>
-            </div>
-            <div class="card-body">
-                <table class="table table-bordered table-hover table-striped mx-auto">
-            <thead class="table-danger w-100">
+<%- include ('partials/header.ejs') %> 
+<%- include ('partials/navbar.ejs') %>  
+    <h1 style="text-align: center;">Bem-vindo a Página de Ônibus</h1>
+    <hr>
+    <h3 style="text-align: center; color: #a34fb8;">Lista de Ônibus</h3>
+        <table class="table table-bordered table-hover table-striped mx-auto w-75">
+            <thead class="table-danger">
                 <th>Nome</th>
-                <th>Marca</th>  
+                <th>Marca</th>
                 <th>Preço</th>
-                <th colspan="2" style="text-align: center;">Ações</th>
             </thead>
             <tbody>
-               <!-- FOREACH -->
-                <% onibus.forEach(onibus=> { %>
+                <!-- FOREACH -->
+                 <% onibus.forEach(onibus => { %>
                     <tr>
-                        <td>
-                            <%= onibus.nome %>
-                        </td>
-                        <td>
-                            <%= onibus.marca %>
-                        </td>
-                        <td>R$ <%= onibus.preco.toLocaleString('pt-br', { style: "currency", currency: "BRL"}) %>
-                        </td>
-
-                        <td class="text-center">
-                                            <button class="btn btn-warning btn-sm">Editar</button>
-                                    </td>
-                                    <td class="text-center">
-                                            <button class="btn btn-danger btn-sm ml-4">Excluir</button>
-                                    </td>
+                        <td><%= onibus.Nome %></td>
+                        <td><%= onibus.Marca %></td>
+                        <td>R$ <%= onibus.Preco %></td>
                     </tr>
                 <% }) %>
             </tbody>
         </table>
-            </div>
-        </div>
-    </div>
-<br>
-        <%- include ('partials/footer.ejs') %>
+
+        <br>
+        <a class="btn-voltar" href="/"><ion-icon name="arrow-back-outline"></ion-icon>Voltar</a>
+<%- include ('partials/footer.ejs') %>   
