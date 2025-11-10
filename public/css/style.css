@@ -3,6 +3,10 @@
     margin: 6px;
 }
 
+body{
+    padding-bottom: 80px;
+}
+
 html{
     margin: 0;
 }
@@ -53,24 +57,9 @@ li a ion-icon{
     color: #000000;
 }
 
-h1{
+h2{
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.btn-voltar{
-    background-color: #a34fb8;
-    color: #000000;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content:center;
-    border-radius: 5px;
-    text-align: center;
-    width: 80px;
-}
-
-.btn-voltar:hover{
-    background-color: #d490e5;
-}
