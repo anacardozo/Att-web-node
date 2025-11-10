@@ -1,25 +1,35 @@
 // importando express
-
 import express from "express"
-
-//criando rota
-// carregando na variavel router o express.Router(),responsável por gerenciar as rotas da aplicação
-// não carrega o express inteiro, só uma parte
-
+import Motos from "../models/Motos.js"
 const router = express.Router()
 
-//ROTA DE PEDIDOS
-router.get("/motos", (req, res) => {
-  const motos = [
-    { Nome: "CG 160 Titan", Marca: "Honda", Preco: "19.230" },
-    { Nome: "Fazer 250", Marca: "Yamaha", Preco: "26.900" },
-    { Nome: "R 1250 GS", Marca: "BMW", Preco: "90.000" },
-    { Nome: "Hayabuza", Marca: "Suzuki", Preco: "124.500" },
-    { Nome: "Biz", Marca: "Honda", Preco: "16.770" },
-  ];
-  res.render("motos", {
-    motos: motos,
+// ROTA DE MOTOS
+router.get("/motos", function (req, res) {
+  Motos.findAll().then((motos) => {
+    res.render("motos", {
+      motos: motos,
+    });
+  }).catch((erro) => {
+    console.log(erro);
   });
 });
 
-export default router
+//ROTA DE CADASTRO DE CARROS
+router.post("/motos/new", (req, res) => {
+  const nome = req.body.nome;
+  const marca = req.body.marca;
+  const preco = req.body.preco;
+
+  Motos.create({
+    nome: nome,
+    marca: marca,
+    preco: preco,
+  }).then(() => {
+    res.redirect("/motos");
+  }).catch((erro) => {
+    console.log(erro);
+  });
+});
+
+// exportando o objeto router
+export default router;

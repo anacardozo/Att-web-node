@@ -4,17 +4,42 @@
 import express from "express" //ES6 modules
 // Iniciando o express na variável app
 const app = express();
+//Importando o Sequelize
+import connection from "./config/sequelize-config.js";
 
 //Importando os Controllers (onde estão as rotas e onde é tratado as requisições)
 import CarrosController from "./controllers/CarrosController.js"
 import MotosController from "./controllers/MotosController.js"
 import OnibusController from "./controllers/OnibusController.js"
 
+//importando os Models
+import Carros from "./models/Carros.js";
+import Pedido from "./models/Motos.js";
+import Onibus from "./models/Onibus.js";
+
+// Realizando a conexão com o banco de dados
+connection.authenticate().then(()=> {
+    console.log("Conexão com o banco de dados feita com sucesso!")
+}).catch((error) => {
+    console.log(error)
+})
+
+//Criando o banco de dados caso ele não exista
+connection.query(`CREATE DATABASE IF NOT EXISTS concessionaria;`).then(() => {
+  console.log("O banco de dados está criado")
+}).catch((error) => {
+  console.log(error)
+});
+
 //CONFIGURANDO O EJS
 app.set("view engine", "ejs");
 
 //DEFININDO A PASTA PUBLIC para ARQUIVOS Estáticos
 app.use(express.static('public'));
+
+//Permite capturar dados vindo de formulários
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 
 //DEFININDO O USO DAS ROTAS QUE ESTÃO NOS CONTROLLERS
 app.use("/", CarrosController)
