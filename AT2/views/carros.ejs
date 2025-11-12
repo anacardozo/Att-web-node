@@ -1,0 +1,87 @@
+<%- include ('partials/header.ejs') %>
+    <%- include ('partials/navbar.ejs') %>
+        <h1 style="text-align: center; color: #a34fb8;">Bem-vindo a Página de Carros</h1>
+        <hr>
+
+        <div class="container">
+            <div class="card">
+                <div class="card-header w-100 m-0">
+                    <h2>Cadastrar Carro</h1>
+                </div>
+                <div class="card-body w-75">
+                    <form method="POST" action="/carros/new">
+                        <label>Nome do Carro</label>
+                        <input type="text" name="nome" id="nome" placeholder="Insira o nome do carro"
+                            class="form-control" required>
+
+                        <label>Modelo do Carro</label>
+                        <input type="text" name="modelo" id="modelo" placeholder="Insira o modelo do carro"
+                            class="form-control" required>
+
+                        <label>Marca do Carro</label>
+                        <input type="text" name="marca" id="marca" placeholder="Insira a marca do carro"
+                            class="form-control" required>
+
+                        <label>Preço do Carro</label>
+                        <input type="text" name="preco" id="preco" placeholder="Insira o preço do carro"
+                            class="form-control" required>
+                        <br>
+                        <button class="btn btn-success">Cadastrar</button>
+                        <button type="reset" class="btn btn-secondary ml-2">Limpar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="text-align: center; color: #a34fb8;">Lista de Carros</h3>
+
+        <div class="container mb-5">
+            <div class="card">
+                <div class="card-header w-100 m-0">
+                    <h2>Carros</h1>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-hover table-striped mx-auto">
+                        <thead class="table-danger w-100">
+                            <th>Nome</th>
+                            <th>Modelo</th>
+                            <th>Marca</th>
+                            <th>Preço</th>
+                            <th colspan="2" style="text-align: center;">Ações</th>
+                        </thead>
+                        <tbody>
+                            <!-- FOREACH -->
+                            <% carros.forEach(carro=> { %>
+                                <tr>
+                                    <td>
+                                        <%= carro.nome %>
+                                    </td>
+                                    <td>
+                                        <%= carro.modelo %>
+                                    </td>
+                                    <td>
+                                        <%= carro.marca %>
+                                    </td>
+                                    <td>R$ <%= carro.preco.toLocaleString('pt-br', { style: "currency" , currency: "BRL"
+                                            }) %>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <a href="/carros/edit/<%= carro.id%>">
+                                            <button class="btn btn-warning btn-sm">Editar</button>
+                                        </a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="/carros/delete/<%= carro.id%>" onclick="return confirm('Deseja mesmo excluir o carro <%= carro.nome %>?')">
+                                            <button class="btn btn-danger btn-sm ml-4">Excluir</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <br>
+        <%- include ('partials/footer.ejs') %>

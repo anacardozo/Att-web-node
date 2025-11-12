@@ -1,0 +1,65 @@
+*{
+    align-items: center;
+    margin: 6px;
+}
+
+body{
+    padding-bottom: 80px;
+}
+
+html{
+    margin: 0;
+}
+
+li{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+li a{
+    text-decoration: none;
+    font-size: 20px;
+    color: #a34fb8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer{
+    position: fixed;
+    bottom: 0; 
+    width: 100%; 
+    height: 70px; 
+    margin: 0; 
+    padding: 0; 
+    border: none;
+}
+
+.color-th{
+    background-color: #c87fdb;
+}
+
+.color-th th{
+    background-color: transparent;
+}
+
+li a ion-icon{
+    color: #000000;
+}
+
+h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

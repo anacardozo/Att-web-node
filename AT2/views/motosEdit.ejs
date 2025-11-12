@@ -1,0 +1,26 @@
+<%- include ('partials/header.ejs') %>
+<%- include ('partials/navbar.ejs') %>
+<div class="container">
+    <div class="card">
+        <div class="card-header w-100 m-0">
+            <h1>Alterar carro</h1>
+            <hr>
+            <form method="POST" action="/motos/update/<%= moto.id %>">
+                <label>Nome da moto:</label>
+                <input type="text" name="nome" id="nome" value="<%= moto.nome %>" class="form-control" required>
+                
+                <label>Marca da moto:</label>
+                <input type="text" name="marca" id="marca" value="<%= moto.marca %>" class="form-control" required>
+
+                <label>Preço da moto:</label>
+                <input type="text" name="preco" id="preco" value="<%= moto.preco %>" class="form-control" required>
+                <br>
+                <input type="hidden" name="id" value="<%= moto.id %>">
+                <input type="submit" class="btn btn-warning" value="Alterar" onclick="return confirm('Confirma as alterações realizadas para a moto <%= moto.nome %>?')">
+            </form>
+            <hr>
+        </div>
+    </div>
+</div>
+<br>
+<%- include ('partials/footer.ejs') %>
